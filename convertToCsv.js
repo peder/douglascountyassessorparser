@@ -1,4 +1,7 @@
+var fs = require("fs");
 var json2csv = require("json2csv");
+
+var env = require("./env.json");
 
 var convertToCsv = function(homes) {
     console.log("in convertToCsv");
@@ -7,7 +10,9 @@ var convertToCsv = function(homes) {
     var homesCsv = json2csv({data: homesOnly});
 
     return new Promise(function(resolve, reject) {
-        resolve(homesCsv);
+        fs.writeFile(env.outputFileName, homesCsv, function() {
+            resolve(homesCsv);
+        });
     });
 }
 

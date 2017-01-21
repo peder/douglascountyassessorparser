@@ -17,19 +17,19 @@ var parseImprovementInformationFromHtml = function(homes) {
         //console.log(improvementsTable.html());
 
         improvementsTable.find("tr").each(function() {
-            var key1 = $(this).find("td").eq(0);
-            var value1 = $(this).find("td").eq(1);
-            var key2 = $(this).find("td").eq(2);
-            var value2 = $(this).find("td").eq(3);
+            var key1 = $(this).find("td").eq(0).text();
+            var value1 = $(this).find("td").eq(1).text();
+            var key2 = $(this).find("td").eq(2).text();
+            var value2 = $(this).find("td").eq(3).text();
 
             if(key1)
-                home.improvements[key1] = value1;
+                home.improvements[humps.camelize(key1.replace(":", ""))] = value1;
 
             if(key2)
-                home.improvements[key2] = value2;
+                home.improvements[humps.camelize(key2.replace(":", ""))] = value2;
         });
 
-        console.log(home.improvements);
+        //console.log(home.improvements);
 
         return home;
     });

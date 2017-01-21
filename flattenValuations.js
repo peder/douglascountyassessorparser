@@ -15,7 +15,9 @@ var flattenValuations = function(homes) {
                         //console.log(valuationKey);
                         //home[valuation.year + ]
 
-                        home.home[humps.pascalize(valuationKey) + "Value" + valuation.year] = valuation[valuationKey];
+                        //home.home[humps.pascalize(valuationKey) + "Value" + valuation.year] = valuation[valuationKey];
+
+                        home.home[valuationKey + "Value" + valuation.year] = valuation[valuationKey].replace("$", "");
                     });
         });
 
